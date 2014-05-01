@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <rosparam file="$(find hratc2014_field_trials)/settings/test_minefield.yaml" command="load" />
     </node>
     
-    <!-- HRATC2014 Client -->
-    <node pkg="hratc2014_field_trials" type="simulator.py" name="simulator"/>
+    <!-- HRATC2014 Client 
+    <node pkg="hratc2014_field_trials" type="simulator.py" name="simulator"/> -->
   
 </launch>
