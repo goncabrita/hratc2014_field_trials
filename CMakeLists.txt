@@ -106,6 +106,8 @@ include_directories(
 ## Declare a cpp executable
 # add_executable(hratc2014_field_trials_node src/hratc2014_field_trials_node.cpp)
 add_executable(minefield_static_tf_publisher src/minefield_static_tf_publisher/minefield_static_tf_publisher.cpp)
+add_executable(world_static_tf_publisher src/world_static_tf_publisher/world_static_tf_publisher.cpp)
+add_executable(gps_to_odom src/gps_to_odom/gps_to_odom.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -113,6 +115,8 @@ add_executable(minefield_static_tf_publisher src/minefield_static_tf_publisher/m
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(minefield_static_tf_publisher ${catkin_LIBRARIES})
+target_link_libraries(world_static_tf_publisher ${catkin_LIBRARIES})
+target_link_libraries(gps_to_odom ${catkin_LIBRARIES})
 
 #############
 ## Install ##
