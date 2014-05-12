@@ -28,11 +28,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
     
     <!-- The minefield frame -->
-    <node name="minefield_static_tf_publisher" pkg="hratc2014_field_trials" type="minefield_static_tf_publisher" output="screen">
-      <rosparam file="$(find hratc2014_field_trials)/settings/test_minefield.yaml" command="load" />
-    </node>
-    
-    <!-- HRATC2014 Client 
-    <node pkg="hratc2014_field_trials" type="simulator.py" name="simulator"/> -->
+    <node name="world_static_tf_publisher" pkg="hratc2014_field_trials" type="world_static_tf_publisher" output="screen"/>
   
 </launch>

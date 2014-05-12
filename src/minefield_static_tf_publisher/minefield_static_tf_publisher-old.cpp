@@ -141,7 +141,7 @@ int main(int argc, char** argv)
     pn.param("rate", rate, 20.0);
 
     std::string parent_frame;
-    pn.param<std::string>("parent_frame", parent_frame, "odom");
+    pn.param<std::string>("parent_frame", parent_frame, "world");
 
     std::string child_frame;
     pn.param<std::string>("child_frame", child_frame, "minefield");
@@ -156,38 +156,11 @@ int main(int argc, char** argv)
     q.setRPY(0.0, 0.0, atan2((corner4.y()+corner3.y())/2.0 - center.y(), (corner4.x()+corner3.x())/2.0 - center.x()));
     transform.setRotation(q);
 
-
-    static tf::TransformBroadcaster corner1br;
-    static tf::TransformBroadcaster corner2br;
-    static tf::TransformBroadcaster corner3br;
-    static tf::TransformBroadcaster corner4br;
-
-    tf::Transform transform1;
-    tf::Transform transform2;
-    tf::Transform transform3;
-    tf::Transform transform4;
-
-    transform1.setOrigin(corner1);
-    transform2.setOrigin(corner2);
-    transform3.setOrigin(corner3);
-    transform4.setOrigin(corner4);
-
-    transform1.setRotation(q);
-    transform2.setRotation(q);
-    transform3.setRotation(q);
-    transform4.setRotation(q);
-
-
-
     // Publish the transformation at the desired rate!
     ros::Rate loop(rate);
     while(ros::ok())
     {
         br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), parent_frame, child_frame));
-        corner1br.sendTransform(tf::StampedTransform(transform1, ros::Time::now(), parent_frame, "corner1"));
-        corner2br.sendTransform(tf::StampedTransform(transform2, ros::Time::now(), parent_frame, "corner2"));
-        corner3br.sendTransform(tf::StampedTransform(transform3, ros::Time::now(), parent_frame, "corner3"));
-        corner4br.sendTransform(tf::StampedTransform(transform4, ros::Time::now(), parent_frame, "corner4"));
         ros::spinOnce();
         loop.sleep();
     }
